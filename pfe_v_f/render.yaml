@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: tronsport-api
+    runtime: docker
+    plan: free
+    rootDir: pfe_v_f/tronsport
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        value: jdbc:mysql://mysql-tronsport.alwaysdata.net:3306/tronsport_db?useSSL=true&serverTimezone=UTC
+      - key: DATABASE_USERNAME
+        value: tronsport
+      - key: DATABASE_PASSWORD
+        value: mahdi3629A
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SERVER_PORT
+        value: 8080
+      - key: JAVA_OPTS
+        value: "-XX:+UseContainerSupport -Xmx512m"
+
+  - type: web
+    name: tronsport-frontend
+    runtime: node
+    plan: free
+    rootDir: pfe_v_f/gestion_tronsport
+    buildCommand: npm install && npm run build
+    startCommand: npm run preview
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 3000

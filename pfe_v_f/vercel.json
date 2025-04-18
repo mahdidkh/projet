@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd gestion_tronsport && npm install && npm run build",
+  "outputDirectory": "gestion_tronsport/dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
